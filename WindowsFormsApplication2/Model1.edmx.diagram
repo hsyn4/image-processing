@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b0bfbdbc418e4126bcd370c2f8075f68" Name="Diagram1" ZoomLevel="70" >
+        <EntityTypeShape EntityType="Model1.Yolcu" Width="1.5" PointX="7.25" PointY="1.5" />
+        <EntityTypeShape EntityType="Model1.Ucus_Reservasyon" Width="1.5" PointX="3.625" PointY="3.625" />
+        <EntityTypeShape EntityType="Model1.Reservasyon_Acenteşeri" Width="1.5" PointX="3.875" PointY="1.25" />
+        <EntityTypeShape EntityType="Model1.Havaalanlari" Width="1.5" PointX="6.625" PointY="4.5" />
+        <EntityTypeShape EntityType="Model1.Ucus_Tarifeleri" Width="1.5" PointX="10.25" PointY="2.125" />
+        <EntityTypeShape EntityType="Model1.Odemeler" Width="1.5" PointX="1.375" PointY="4.125" />
+        <EntityTypeShape EntityType="Model1.Reservasyon_Odemeleri" Width="1.5" PointX="2.875" PointY="7.5" />
+        <EntityTypeShape EntityType="Model1.Ucaklar" Width="1.5" PointX="8.625" PointY="5.875" />
+        <EntityTypeShape EntityType="Model1.Ucak_Guzergahı" Width="1.5" PointX="6" PointY="7.125" />
+        <AssociationConnector Association="Model1.Reservasyon_AcenteşeriUcus_Reservasyon" />
+        <AssociationConnector Association="Model1.YolcuUcus_Reservasyon" />
+        <AssociationConnector Association="Model1.OdemelerReservasyon_Odemeleri" />
+        <AssociationConnector Association="Model1.Ucus_ReservasyonReservasyon_Odemeleri" />
+        <AssociationConnector Association="Model1.HavaalanlariUcus_Tarifeleri" />
+        <AssociationConnector Association="Model1.UcaklarUcus_Tarifeleri" />
+        <AssociationConnector Association="Model1.UcaklarUcak_Guzergahı" />
+        <AssociationConnector Association="Model1.Ucus_ReservasyonUcak_Guzergahı" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

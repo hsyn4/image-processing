@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="YolcuSet" EntityType="Model1.Yolcu" />
+          <EntitySet Name="Ucus_ReservasyonSet" EntityType="Model1.Ucus_Reservasyon" />
+          <EntitySet Name="Reservasyon_AcenteşeriSet" EntityType="Model1.Reservasyon_Acenteşeri" />
+          <EntitySet Name="HavaalanlariSet" EntityType="Model1.Havaalanlari" />
+          <EntitySet Name="Ucus_TarifeleriSet" EntityType="Model1.Ucus_Tarifeleri" />
+          <EntitySet Name="OdemelerSet" EntityType="Model1.Odemeler" />
+          <EntitySet Name="Reservasyon_OdemeleriSet" EntityType="Model1.Reservasyon_Odemeleri" />
+          <EntitySet Name="UcaklarSet" EntityType="Model1.Ucaklar" />
+          <EntitySet Name="Ucak_GuzergahıSet" EntityType="Model1.Ucak_Guzergahı" />
+          <AssociationSet Name="Reservasyon_AcenteşeriUcus_Reservasyon" Association="Model1.Reservasyon_AcenteşeriUcus_Reservasyon">
+            <End Role="Reservasyon_Acenteşeri" EntitySet="Reservasyon_AcenteşeriSet" />
+            <End Role="Ucus_Reservasyon" EntitySet="Ucus_ReservasyonSet" />
+          </AssociationSet>
+          <AssociationSet Name="YolcuUcus_Reservasyon" Association="Model1.YolcuUcus_Reservasyon">
+            <End Role="Yolcu" EntitySet="YolcuSet" />
+            <End Role="Ucus_Reservasyon" EntitySet="Ucus_ReservasyonSet" />
+          </AssociationSet>
+          <AssociationSet Name="OdemelerReservasyon_Odemeleri" Association="Model1.OdemelerReservasyon_Odemeleri">
+            <End Role="Odemeler" EntitySet="OdemelerSet" />
+            <End Role="Reservasyon_Odemeleri" EntitySet="Reservasyon_OdemeleriSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Yolcu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yolcu_Adi" Type="String" Nullable="false" />
+          <Property Name="Yolcu_Soyadi" Type="String" Nullable="false" />
+          <Property Name="Yolcu_Tel" Type="String" Nullable="false" />
+          <Property Name="Yolcu_Adres" Type="String" Nullable="false" />
+          <Property Name="Yolcu_Sehir" Type="String" Nullable="false" />
+          <Property Name="Yolcu_Ulke" Type="String" Nullable="false" />
+          <NavigationProperty Name="Ucus_Reservasyon" Relationship="Model1.YolcuUcus_Reservasyon" FromRole="Yolcu" ToRole="Ucus_Reservasyon" />
+        </EntityType>
+        <EntityType Name="Ucus_Reservasyon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Acente_id" Type="String" Nullable="false" />
+          <Property Name="Rezervasyon_Kodu" Type="String" Nullable="false" />
+          <Property Name="Bilet_Kodu" Type="String" Nullable="false" />
+          <Property Name="Seyahat_Kodu" Type="String" Nullable="false" />
+          <NavigationProperty Name="Reservasyon_Acenteşeri" Relationship="Model1.Reservasyon_AcenteşeriUcus_Reservasyon" FromRole="Ucus_Reservasyon" ToRole="Reservasyon_Acenteşeri" />
+          <NavigationProperty Name="Yolcu" Relationship="Model1.YolcuUcus_Reservasyon" FromRole="Ucus_Reservasyon" ToRole="Yolcu" />
+        </EntityType>
+        <EntityType Name="Reservasyon_Acenteşeri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Acente_Adı" Type="String" Nullable="false" />
+          <Property Name="Acente_Detaylari" Type="String" Nullable="false" />
+          <NavigationProperty Name="Ucus_Reservasyon" Relationship="Model1.Reservasyon_AcenteşeriUcus_Reservasyon" FromRole="Reservasyon_Acenteşeri" ToRole="Ucus_Reservasyon" />
+        </EntityType>
+        <EntityType Name="Havaalanlari">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Havaalanı_Adı" Type="String" Nullable="false" />
+          <Property Name="Havalanı_Yeri" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ucus_Tarifeleri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ucus_Kodu" Type="String" Nullable="false" />
+          <Property Name="Ucus_Kalkıs_Kodu" Type="String" Nullable="false" />
+          <Property Name="Varis_Havaalani_Kodu" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Odemeler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Odeme_Kodu" Type="String" Nullable="false" />
+          <Property Name="Odeme_Tarihi" Type="String" Nullable="false" />
+          <Property Name="Odeme_Ucreti" Type="String" Nullable="false" />
+          <NavigationProperty Name="Reservasyon_Odemeleri" Relationship="Model1.OdemelerReservasyon_Odemeleri" FromRole="Odemeler" ToRole="Reservasyon_Odemeleri" />
+        </EntityType>
+        <EntityType Name="Reservasyon_Odemeleri">
+          <Key>
+            <PropertyRef Name="Reservasyon_Id" />
+          </Key>
+          <Property Name="Reservasyon_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Odeme_Id" Type="String" Nullable="false" />
+          <NavigationProperty Name="Odemeler" Relationship="Model1.OdemelerReservasyon_Odemeleri" FromRole="Reservasyon_Odemeleri" ToRole="Odemeler" />
+        </EntityType>
+        <EntityType Name="Ucaklar">
+          <Key>
+            <PropertyRef Name="Ucak_Id" />
+          </Key>
+          <Property Name="Ucak_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ucus_No" Type="String" Nullable="false" />
+          <Property Name="Kalkıs_Kodu" Type="String" Nullable="false" />
+          <Property Name="Varis_Kodu" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ucak_Guzergahı">
+          <Key>
+            <PropertyRef Name="Reservasyon_Id" />
+          </Key>
+          <Property Name="Reservasyon_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ucak_İd" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="Reservasyon_AcenteşeriUcus_Reservasyon">
+          <End Type="Model1.Reservasyon_Acenteşeri" Role="Reservasyon_Acenteşeri" Multiplicity="1" />
+          <End Type="Model1.Ucus_Reservasyon" Role="Ucus_Reservasyon" Multiplicity="*" />
+        </Association>
+        <Association Name="YolcuUcus_Reservasyon">
+          <End Type="Model1.Yolcu" Role="Yolcu" Multiplicity="1" />
+          <End Type="Model1.Ucus_Reservasyon" Role="Ucus_Reservasyon" Multiplicity="*" />
+        </Association>
+        <Association Name="OdemelerReservasyon_Odemeleri">
+          <End Type="Model1.Odemeler" Role="Odemeler" Multiplicity="1" />
+          <End Type="Model1.Reservasyon_Odemeleri" Role="Reservasyon_Odemeleri" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
